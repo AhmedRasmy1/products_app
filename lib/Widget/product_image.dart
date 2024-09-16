@@ -17,13 +17,13 @@ class ProductImage extends StatelessWidget {
         width: double.infinity,
         alignment: Alignment.topRight,
         decoration: BoxDecoration(
-          color: Colors.red,
+          color: Colors.white,
           borderRadius: BorderRadius.circular(5),
           image: DecorationImage(
             image: NetworkImage(
               product!.image,
             ),
-            fit: BoxFit.fill,
+            fit: BoxFit.contain,
           ),
         ),
         child: Container(

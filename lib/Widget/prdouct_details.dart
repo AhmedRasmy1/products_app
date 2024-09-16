@@ -13,7 +13,7 @@ class ProductDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 4),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -54,7 +54,7 @@ class ProductDetails extends StatelessWidget {
           Row(
             children: [
               Text(
-                product!.rating.rate.toString(),
+                "Review (${product!.rating.rate})",
                 style: const TextStyle(
                     color: Color(0xff030051), fontWeight: FontWeight.w600),
               ),
