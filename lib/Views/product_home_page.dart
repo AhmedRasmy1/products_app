@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:products_app/Widget/singleProduct_widget.dart';
+import 'package:products_app/models/product_model.dart';
+import 'package:products_app/services/get_products.dart';
 
 class ProductHomePage extends StatelessWidget {
   const ProductHomePage({super.key});
@@ -25,16 +27,37 @@ class ProductHomePage extends StatelessWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.all(10.0),
-        child: GridView.builder(
-          itemCount: 4,
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            crossAxisSpacing: 10,
-            mainAxisSpacing: 10,
-            childAspectRatio: 0.6,
-          ),
-          itemBuilder: (context, index) {
-            return const SingleProductWidget();
+        child: FutureBuilder<List<ProductModel>>(
+          future: GetProducts().getAllProducts(),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const Center(child: CircularProgressIndicator());
+            } else if (snapshot.hasError) {
+              return Center(
+                child: Text("Error: ${snapshot.error.toString()}"),
+              );
+            } else if (snapshot.hasData) {
+              List<ProductModel> products = snapshot.data!;
+
+              if (products.isEmpty) {
+                return const Center(child: Text("No products available"));
+              }
+
+              return GridView.builder(
+                itemCount: products.length,
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 10,
+                  mainAxisSpacing: 19,
+                  childAspectRatio: 0.6,
+                ),
+                itemBuilder: (context, index) {
+                  return SingleProductWidget(product: products[index]);
+                },
+              );
+            } else {
+              return const Center(child: Text("No data available"));
+            }
           },
         ),
       ),

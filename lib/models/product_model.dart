@@ -2,7 +2,7 @@ class ProductModel {
   final String title;
   final String description;
   final String image;
-  final double price;
+  final dynamic price;
   final RatingModel rating;
 
   ProductModel({
@@ -12,19 +12,19 @@ class ProductModel {
     required this.price,
     required this.rating,
   });
-  factory ProductModel.fromJson(Map<String, dynamic> json) {
+  factory ProductModel.fromJson(json) {
     return ProductModel(
       title: json['title'],
       description: json['description'],
       image: json['image'],
-      price: json['price'],
+      price: json['price'] ?? 0.0,
       rating: RatingModel.fromJson(json['rating']),
     );
   }
 }
 
 class RatingModel {
-  final double rate;
+  final dynamic rate;
   final int count;
 
   RatingModel(this.rate, this.count);

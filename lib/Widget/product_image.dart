@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:products_app/models/product_model.dart';
 
+// ignore: must_be_immutable
 class ProductImage extends StatelessWidget {
-  const ProductImage({
+  ProductImage({
+    required this.product,
     super.key,
   });
+
+  ProductModel? product;
 
   @override
   Widget build(BuildContext context) {
@@ -14,9 +19,9 @@ class ProductImage extends StatelessWidget {
         decoration: BoxDecoration(
           color: Colors.red,
           borderRadius: BorderRadius.circular(5),
-          image: const DecorationImage(
+          image: DecorationImage(
             image: NetworkImage(
-              "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
+              product!.image,
             ),
             fit: BoxFit.fill,
           ),

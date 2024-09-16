@@ -1,28 +1,33 @@
 import 'package:flutter/material.dart';
+import 'package:products_app/models/product_model.dart';
 
+// ignore: must_be_immutable
 class ProductDetails extends StatelessWidget {
-  const ProductDetails({
+  ProductDetails({
+    required this.product,
     super.key,
   });
 
+  ProductModel? product;
+
   @override
   Widget build(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.symmetric(horizontal: 10),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 10),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "Product Name",
-            style: TextStyle(
+            product!.title,
+            style: const TextStyle(
                 fontSize: 15,
                 fontWeight: FontWeight.bold,
                 color: Color(0xff030051)),
             overflow: TextOverflow.ellipsis,
           ),
           Text(
-            "Description Product",
-            style: TextStyle(
+            product!.description,
+            style: const TextStyle(
                 fontSize: 15,
                 fontWeight: FontWeight.bold,
                 color: Color(0xff030051)),
@@ -31,14 +36,14 @@ class ProductDetails extends StatelessWidget {
           Row(
             children: [
               Text(
-                "EGP 1200",
-                style: TextStyle(
+                "EGP ${product!.price}",
+                style: const TextStyle(
                     fontSize: 15,
                     fontWeight: FontWeight.bold,
                     color: Color(0xff030051)),
               ),
-              SizedBox(width: 25),
-              Text(
+              const SizedBox(width: 25),
+              const Text(
                 "2000 EGP",
                 style: TextStyle(
                     color: Color(0xff239def),
@@ -49,17 +54,17 @@ class ProductDetails extends StatelessWidget {
           Row(
             children: [
               Text(
-                "Review (4.6)",
-                style: TextStyle(
+                product!.rating.rate.toString(),
+                style: const TextStyle(
                     color: Color(0xff030051), fontWeight: FontWeight.w600),
               ),
-              Icon(
+              const Icon(
                 Icons.star,
                 color: Colors.yellow,
                 size: 20,
               ),
-              Spacer(),
-              Icon(
+              const Spacer(),
+              const Icon(
                 Icons.add_circle,
                 color: Color(0xff004087),
                 size: 40,
