@@ -5,6 +5,23 @@ class ProductHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold();
+    return Scaffold(
+      appBar: AppBar(
+        actions: const [
+          Padding(
+            padding: EdgeInsets.only(right: 20),
+            child: Icon(
+              Icons.shopping_cart,
+              color: Colors.black,
+              size: 30,
+            ),
+          ),
+        ],
+        title: const Text(
+          'Products',
+          style: TextStyle(color: Colors.black, fontSize: 30),
+        ),
+      ),
+    );
   }
 }
