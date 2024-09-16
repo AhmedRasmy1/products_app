@@ -3,7 +3,9 @@ import 'package:products_app/Widget/prdouct_details.dart';
 import 'package:products_app/Widget/product_image.dart';
 
 class SingleProductWidget extends StatelessWidget {
-  const SingleProductWidget({super.key});
+  const SingleProductWidget({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
