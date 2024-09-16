@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:products_app/Widget/singleProduct_widget.dart';
 
 class ProductHomePage extends StatelessWidget {
   const ProductHomePage({super.key});
@@ -22,6 +23,7 @@ class ProductHomePage extends StatelessWidget {
           style: TextStyle(color: Colors.black, fontSize: 30),
         ),
       ),
+      body: const SingleProductWidget(),
     );
   }
 }
