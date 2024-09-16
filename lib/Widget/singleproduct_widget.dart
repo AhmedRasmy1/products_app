@@ -8,9 +8,6 @@ class SingleProductWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 220,
-      width: 185,
-      margin: const EdgeInsets.all(20),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(10),
@@ -19,10 +16,8 @@ class SingleProductWidget extends StatelessWidget {
       child: const Column(
         children: [
           ProductImage(),
-          SizedBox(
-            height: 5,
-          ),
-          ProductDetails()
+          SizedBox(height: 5),
+          ProductDetails(),
         ],
       ),
     );
