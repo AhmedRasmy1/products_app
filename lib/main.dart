@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:products_app/Views/product_home_page.dart';
 
 void main() {
   runApp(const ProductsApp());
@@ -9,6 +10,9 @@ class ProductsApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp();
+    return const MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: ProductHomePage(),
+    );
   }
 }
