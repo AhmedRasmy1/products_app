@@ -1,16 +1,13 @@
-# products_app
+# Products App
 
-A new Flutter project.
+This application displays a list of products in a grid view with details like price, rating, and images.
 
-## Getting Started
+## Screenshots
 
-This project is a starting point for a Flutter application.
+![Product List](https://github.com/AhmedRasmy1/products_app/blob/main/lib/assets/Screenshot_1726563570.png)
+![Product Details](https://github.com/AhmedRasmy1/products_app/blob/main/lib/assets/Screenshot_1726563577.png)
 
-A few resources to get you started if this is your first Flutter project:
+## Features
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- Display products with prices and discounts.
+- Using cubit with app.
