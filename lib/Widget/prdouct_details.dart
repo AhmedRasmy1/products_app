@@ -56,7 +56,7 @@ class ProductDetails extends StatelessWidget {
               Text(
                 "Review (${product!.rating.rate})",
                 style: const TextStyle(
-                    color: Color(0xff030051), fontWeight: FontWeight.w600),
+                    color: Color(0xff030051), fontWeight: FontWeight.w500),
               ),
               const Icon(
                 Icons.star,
