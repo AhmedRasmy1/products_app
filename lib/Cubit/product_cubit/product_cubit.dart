@@ -5,8 +5,8 @@ import 'package:products_app/services/get_products.dart';
 
 part 'product_state.dart';
 
-class ProductCubitCubit extends Cubit<ProductState> {
-  ProductCubitCubit() : super(ProductInitial());
+class ProductCubit extends Cubit<ProductState> {
+  ProductCubit() : super(ProductInitial());
 
   void getProducts() async {
     try {

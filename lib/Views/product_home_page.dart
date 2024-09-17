@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:products_app/Cubit/product_cubit/product_cubit.dart';
 import 'package:products_app/Widget/singleProduct_widget.dart';
-import 'package:products_app/models/product_model.dart';
-import 'package:products_app/services/get_products.dart';
 
 class ProductHomePage extends StatelessWidget {
   const ProductHomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    BlocProvider.of<ProductCubit>(context).getProducts();
     return Scaffold(
       appBar: AppBar(
         actions: const [
@@ -27,24 +28,17 @@ class ProductHomePage extends StatelessWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.all(10.0),
-        child: FutureBuilder<List<ProductModel>>(
-          future: GetProducts().getAllProducts(),
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
+        child: BlocBuilder<ProductCubit, ProductState>(
+          builder: (context, state) {
+            if (state is ProductLoading) {
               return const Center(child: CircularProgressIndicator());
-            } else if (snapshot.hasError) {
-              return Center(
-                child: Text("Error: ${snapshot.error.toString()}"),
-              );
-            } else if (snapshot.hasData) {
-              List<ProductModel> products = snapshot.data!;
-
-              if (products.isEmpty) {
+            } else if (state is ProductSuccess) {
+              final product = state.products;
+              if (product.isEmpty) {
                 return const Center(child: Text("No products available"));
               }
-
               return GridView.builder(
-                itemCount: products.length,
+                itemCount: product.length,
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
                   crossAxisSpacing: 10,
@@ -52,11 +46,13 @@ class ProductHomePage extends StatelessWidget {
                   childAspectRatio: 0.6,
                 ),
                 itemBuilder: (context, index) {
-                  return SingleProductWidget(product: products[index]);
+                  return SingleProductWidget(product: product[index]);
                 },
               );
+            } else if (state is ProductFailure) {
+              return Center(child: Text(state.errMessage));
             } else {
-              return const Center(child: Text("No data available"));
+              return const Center(child: Text("Something went wrong"));
             }
           },
         ),
